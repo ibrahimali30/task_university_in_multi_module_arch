@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="university"
+            type="com.example.model.UniversityUiModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="24dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_university_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="55dp"
+            android:text="@{university.name}"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="22sp"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="72dp"
+            tools:text="@tools:sample/lorem" />
+
+        <LinearLayout
+            android:layout_marginHorizontal="24dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_university_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_university_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{university.state_province}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="18sp"
+                tools:text="@tools:sample/lorem" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_university_country"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{university.country}"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    tools:text="Country" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_university_country_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{university.alpha_two_code}"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    tools:text="Country Code" />
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_university_web_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{university.getWepPage()}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="18sp"
+                tools:text="@tools:sample/lorem" />
+
+
+
+        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_refresh"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/sharp_refresh_24" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

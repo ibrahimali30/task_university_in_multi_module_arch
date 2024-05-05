@@ -1,0 +1,106 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id "androidx.navigation.safeargs"
+}
+
+
+
+android {
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.multimodule_mviapplication"
+        minSdk 26
+        targetSdk 33
+        versionCode 6
+        versionName "4.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    namespace 'com.example.task'
+
+
+}
+
+dependencies {
+
+    implementation project(":base")
+    implementation project(":common")
+    implementation project(":domain")
+    implementation project(":data")
+    implementation project(":remote")
+    implementation project(":local")
+    implementation project(':universityDetails')
+
+
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // JetPack
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_viewmodel"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_livedata_ktx"
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
+
+    // Hilt dependencies
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // Test
+    testImplementation "junit:junit:$junitVersion"
+    // testImplementation for pure JVM unit tests
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines"
+    // Run Blocking Test
+    testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    // Truth
+    testImplementation "com.google.truth:truth:1.4.2"
+    // For small test - large test annotations
+    testImplementation "androidx.test:runner:1.5.2"
+    // Mock objects
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    // For Flow test
+    testImplementation "app.cash.turbine:turbine:1.1.0"
+}
+
+
+private Integer generateVersionCode() {
+    return minSdk * 10000000 + versionMajor * 10000 + versionMinor * 100 + versionPatch
+}
+
+
+private String generateVersionName() {
+    String versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+    return versionName
+}
